@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="select">
+    <form action="" method="post" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="">From</label></td>
+                    <td><label for="">To</label></td>
+                </tr>
+                <tr>
+                    <td><input type="date" class="datepicker form-control" id="start_date" name="start_date" value="{{ request.POST.start_date }}"></td>
+                    <td><input type="date" class="datepicker form-control" id="end_date" name="end_date"  value="{{ request.POST.end_date }}"></td>
+                    <td><button type="submit">Search</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+    </form>
+</div>
+<br>
+
+{% if request.method == 'POST' %}
+    {% if financial_transactions %}
+        <div class="container">
+            <h1>Life Hospital Financial Record</h1>
+            <strong>5th Floor, Issac and Geethas Image Centre, Seaport - Airport Rd, Kochi, Kakkanad, Kerala 682037</strong>
+            <br>
+            <br>
+            <h5>Opening Balance: {{ opening_financial_balance }}</h5>
+            <h5>Closing Balance: {{ closing_balance }}</h5>
+            <br>
+            <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #000;">
+                        <th class="SI" style="border: 1px solid #000;"><label>SI. No:</label></th>
+                        <th class="Date" style="border: 1px solid #000;"><label>Date</label></th>
+                        <th class="Particular" style="border: 1px solid #000;"><label>Particular</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Debit</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Credit</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Balance</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for finance in financial_transactions %}
+                        <tr>
+                            <td class="SI" style="border: 1px solid #000;"><label>{{ forloop.counter }}</label></td>
+                            <td style="border: 1px solid #000;">{{ finance.date }}</td>
+                            <td style="border: 1px solid #000;"><label>{{ finance.particulars }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{ finance.debit|default:"" }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{ finance.credit|default:"" }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{ finance.balance }}</label></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div> 
+    {% else %}
+        <p id="p">No transactions found for the selected date range.</p>
+    {% endif %}
+{% endif %}     
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sheet1.css' %}">
+<script src="{% static 'js_files/validation.js' %}"></script>
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Bootstrap-datepicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap-datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/sheet1.css' %}">
+    <script src="{% static 'js_files/validation.js' %}"></script>
+    <title>Document</title>
+
+</head>
+<body>
+    <div class="select">
+        <form action="" method="post" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="">From</label></td>
+                        <td><label for="">To</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" id="start_date" name="start_date" value="{{ request.POST.start_date }}"></td>
+                        <td><input type="date" id="end_date" name="end_date"  value="{{ request.POST.end_date }}"></td>
+                        <td><button type="submit">Search</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
+        </form>
+    </div>
+
+
+    {% if request.method == 'POST' %}
+        {% if financial_transactions %}
+            <div class="container">
+                <h1>Life Hospital Financial Record</h1>
+                <strong>5th Floor, Issac and Geethas Image Centre, Seaport - Airport Rd, Kochi, Kakkanad, Kerala 682037</strong>
+                <h3>Opening Balance: {{ opening_financial_balance }}</h3>
+                <h3>Closing Balance: {{ closing_balance }}</h3>
+                <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #000;">
+                            <th class="SI" style="border: 1px solid #000;"><label>SI. No:</label></th>
+                            <th class="Date" style="border: 1px solid #000;"><label>Date</label></th>
+                            <th class="Particular" style="border: 1px solid #000;"><label>Particular</label></th>
+                            <th class="bal" style="border: 1px solid #000;"><label>Debit</label></th>
+                            <th class="bal" style="border: 1px solid #000;"><label>Credit</label></th>
+                            <th class="bal" style="border: 1px solid #000;"><label>Balance</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for finance in financial_transactions %}
+                            <tr>
+                                <td class="SI" style="border: 1px solid #000;"><label>{{ forloop.counter }}</label></td>
+                                <td style="border: 1px solid #000;">{{ finance.date }}</td>
+                                <td style="border: 1px solid #000;"><label>{{ finance.particulars }}</label></td>
+                                <td style="border: 1px solid #000;"><label>{{ finance.debit|default:"" }}</label></td>
+                                <td style="border: 1px solid #000;"><label>{{ finance.credit|default:"" }}</label></td>
+                                <td style="border: 1px solid #000;"><label>{{ finance.balance }}</label></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <p>No transactions found for the selected date range.</p>
+        {% endif %}
+    {% endif %}     
+
+
+    
+    
+</body>
+</html> -->

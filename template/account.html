@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='container'>
+    <div class="box">
+        <div class="head">
+            <h1>Life Hospital</h1>
+            <h2>Balance Sheet - 2023</h2>
+            <hr>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <h3>ASSETS</h3>
+                <h5>Current Assets</h5>
+                <table>
+                    {% for account in current_assets %}
+                        <tr>
+                            <td>{{ account.name }} </td>
+                            <td class="caspace">${{ account.amount }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+                <h6 class="TCA">Total Current Assets <span>${{ total_current_assets }}</span></h6>
+                <h5>Noncurrent Assets</h5>
+                <table>
+                    {% for account in non_current_assets %}
+                        <tr>
+                            <td>{{ account.name }}</td>
+                            <td class="naspace"> ${{ account.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <h6 class="TNA">Total Noncurrent Assets <span>${{ total_non_current_assets }}</span> </h6>
+                <h6 class="TA">Total Assets <span>${{ total_assets }} </span></h6>
+            </div>
+            <div class="divider"></div>
+            <div class="right-content">
+                <h3>LIABILITIES AND EQUITY</h3>
+                <h5>Liabilities</h5>
+                <h5>Current Liabilities</h5>
+                <table>
+                    {% for account in current_liabilities %}
+                        <tr>
+                            <td>{{ account.name }}</td>
+                            <td class="clspace">${{ account.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <h6 class="TCL">Total Current Liabilities: <span>${{ total_current_liabilities }}</span></h6>
+                <h5>Noncurrent Liabilities</h5>
+                <table>
+                    {% for account in non_current_liabilities %}
+                        <tr>
+                            <td>{{ account.name }}</td>
+                            <td class="nlspace">${{ account.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>                            
+                <h6 class="TNL">Total Noncurrent Liabilities <span>${{ total_non_current_liabilities }}</span></h6>
+                <h5>Equity</h5>
+                <table>
+                    {% for account in equity %}
+                        <tr>
+                            <td>{{ account.name }}</td>
+                            <td class="espace">${{ account.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>              
+                <h6 class="TE">Total Equity <span>${{ total_equity }}</span></h6>
+                <h6 class="TLE">Total Liabilities and Equity <span>${{ total_liabilities_equity }}</span></h6>
+            </div>
+        </div>  
+    </div>
+</div>
+
+  
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sheet.css' %}">
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Bootstrap-datepicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap-datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Sheet</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/sheet.css' %}">
+</head>
+<body>
+    <div class='container'>
+        <div class="box">
+            <div class="head">
+                <h1>Life Hospital</h1>
+                <h2>Balance Sheet - 2023</h2>
+                <hr>
+            </div>
+            <div class="content">
+                <div class="left-content">
+                    <h2>ASSETS</h2>
+                    <h4>Current Assets</h4>
+                    <table>
+                        {% for account in current_assets %}
+                            <tr>
+                                <td>{{ account.name }} </td>
+                                <td class="caspace">${{ account.amount }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                    <h4 class="TCA">Total Current Assets <span>${{ total_current_assets }}</span></h4>
+                    <h4>Noncurrent Assets</h4>
+                    <table>
+                        {% for account in non_current_assets %}
+                            <tr>
+                                <td>{{ account.name }}</td>
+                                <td class="naspace"> ${{ account.amount }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <h4 class="TNA">Total Noncurrent Assets <span>${{ total_non_current_assets }}</span> </h4>
+                    <h4 class="TA">Total Assets <span>${{ total_assets }} </span></h4>
+                </div>
+                <div class="divider"></div>
+                <div class="right-content">
+                    <h2>LIABILITIES AND EQUITY</h2>
+                    <h4>Liabilities</h4>
+                    <h4>Current Liabilities</h4>
+                    <table>
+                        {% for account in current_liabilities %}
+                            <tr>
+                                <td>{{ account.name }}</td>
+                                <td class="clspace">${{ account.amount }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <h4 class="TCL">Total Current Liabilities: <span>${{ total_current_liabilities }}</span></h4>
+                    <h4>Noncurrent Liabilities</h4>
+                    <table>
+                        {% for account in non_current_liabilities %}
+                            <tr>
+                                <td>{{ account.name }}</td>
+                                <td class="nlspace">${{ account.amount }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>                            
+                    <h4 class="TNL">Total Noncurrent Liabilities <span>${{ total_non_current_liabilities }}</span></h4>
+                    <h4>Equity</h4>
+                    <table>
+                        {% for account in equity %}
+                            <tr>
+                                <td>{{ account.name }}</td>
+                                <td class="espace">${{ account.amount }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>              
+                    <h4 class="TE">Total Equity <span>${{ total_equity }}</span></h4>
+                    <h4 class="TLE">Total Liabilities and Equity <span>${{ total_liabilities_equity }}</span></h4>
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+
+

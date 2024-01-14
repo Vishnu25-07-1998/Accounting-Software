@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="{% url 'voucher' %}" method="post" id="voucherForm">
+    {% csrf_token %}
+    <select name="voucher" id="voucherSelect" class="form-select" aria-label="Default select example">
+        <option value="" disabled {% if not selected_voucher %}selected{% endif %}>Select the voucher</option>
+        {% for vou in vouch %}   
+            <option value="{{ vou.name }}" {% if vou.name == selected_voucher %}selected{% endif %}>{{ vou.name }}</option>
+        {% endfor %}         
+    </select>
+
+    <button type="submit" onclick="updateSelectedOption()">Search</button>
+
+    <script>
+        function updateSelectedOption() {
+            var selectElement = document.getElementById("voucherSelect").value;
+            var selectedValue = selectElement.value
+
+            // Remove the "selected" attribute from all options
+            for (var i = 0; i < selectElement.options.length; i++) {
+                selectElement.options[i].removeAttribute("selected");
+            }
+
+            // Set the "selected" attribute for the chosen option
+            var selectedOption = selectElement.querySelector("option[value='" + selectedValue + "']");
+            selectedOption.setAttribute("selected", "selected");
+        }
+    </script>
+</form>
+
+
+<div>
+    <br>
+    <br>
+    {% if selected_voucher %}
+        <div class="cont">
+            <h1>Life Hospital</h1>
+            <h2>Payment Voucher</h2>
+            <br>
+            {% for vouc in PaymentVoucher %}
+                <label for="vdate">Date:</label>
+                <div id="date-line" contenteditable="false">{{ vouc.date }}</div>
+                <br>
+                <br>
+                <br>
+                <label for="vvendor">Vendor Name:</label>
+                <div id="name-line" contenteditable="false">{{ vouc.name }}</div>
+
+               <br>
+               <br>
+
+               <label for="vdescription">Description:</label>
+               <div id="desc-line" contenteditable="false">{{ vouc.desc }}</div>
+               <br>
+               <br>
+               <label for="vamount">Amount in words:</label>
+               <div id="amount-line" contenteditable="false">{{ vouc.amount }}</div>
+               <br>
+               <br>
+               <label for="vpay">Payment Method:</label>
+               <div id="pay-line" contenteditable="false">{{ vouc.pay }}</div>
+               <br>
+               <br>
+               <br>
+               <label for="vauth">Authorized by:</label>
+               <div id="auth-line" contenteditable="false">{{ vouc.auth }}</div>
+               <label for="vapp"><span>Approved by:</span></label>
+               <div id="app-line" contenteditable="false">{{ vouc.approve }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Bootstrap-datepicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap-datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+{% endblock %}

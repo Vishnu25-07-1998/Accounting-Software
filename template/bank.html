@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'bank' %}" method="post" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <br>
+    <select name="BankName" id="BankName" onchange="toggleDateSelection()"  class="form-select" aria-label="Default select example">
+        <option value="Select" {% if not request.POST.BankName or request.POST.BankName == 'Select' %}selected{% endif %} disabled>Select the bank</option>
+        <option value="ZFS Bank" {% if request.POST.BankName == 'ZFS Bank' %}selected{% endif %}>ZFS Bank</option>
+        <option value="VFD Bank" {% if request.POST.BankName == 'VFD Bank' %}selected{% endif %}>VFD Bank</option>
+        <option value="ESF Bank" {% if request.POST.BankName == 'ESF Bank' %}selected{% endif %}>ESF Bank</option>
+    </select>
+
+
+    <div id="dateSelectionSection">
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="">From</label></td>
+                    <td><label for="">To</label></td>
+                </tr>
+                <tr>
+                    <td><input type="date" class="datepicker form-control" id="startdate" name="startdate" value="{{ request.POST.startdate }}"></td>
+                    <td><input type="date" class="datepicker form-control" id="enddate" name="enddate"  value="{{ request.POST.enddate }}"></td>
+                    <td><button type="submit">Search</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</form>
+</div>
+
+{% if request.method == 'POST' %}
+    {% if bank_transactions %}
+        <div class="Bank-container">
+            <h1>ZFS Bank</h1>
+            <p><strong>38/1581 Fotofast House, Mahatma Gandhi Rd, Padma Junction, Kochi, Kerala 682035</strong></p>
+            <h5>Opening Balance:  {{opening_bank_balance }}</h5>
+            <h5>Closing Balance: {{closing_bank_balance}}</h5>
+            <br>
+            <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #000;">
+                        <th class="SI" style="border: 1px solid #000;"><label>SI. No:</label></th>
+                        <th class="Date" style="border: 1px solid #000;"><label >Date</label></th>
+                        <th class="Particular" style="border: 1px solid #000;"><label>Particular</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Debit</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Credit</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Balance</label></th>
+                    </tr>
+               </thead>
+               <tbody>
+                {% for bank in bank_transactions %}
+                    <tr>
+                        <td class="SI" style="border: 1px solid #000;"><label>{{ forloop.counter }}</label></td>
+                        <td style="border: 1px solid #000;"><label>{{bank.date}}</td></label>
+                        <td style="border: 1px solid #000;"><label>{{bank.particulars}}</label></td>
+                        <td style="border: 1px solid #000;"><label>{{bank.debit|default:"" }}</label></td>
+                        <td style="border: 1px solid #000;"><label>{{bank.credit|default:"" }}</label></td>
+                        <td style="border: 1px solid #000;"><label>{{bank.balance}}</label></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>              
+    {% else %}
+        <p id="p">No Transaction found for the selected date range</p>
+    {% endif %}
+{% endif %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sheet2.css' %}">
+<script src="{% static 'js_files/sheet2.js' %}"></script>
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Bootstrap-datepicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap-datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+                    
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/sheet2.css' %}">
+    <script src="{% static 'js_files/sheet2.js' %}"></script>
+</head>
+<body>
+    <form action="{% url 'bank' %}" method="post" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <label for="" id="Bank">Select the required bank</label>
+        <select name="BankName" id="BankName" onchange="toggleDateSelection()">
+            <option value="Select" {% if not request.POST.BankName or request.POST.BankName == 'Select' %}selected{% endif %} disabled>Select</option>
+            <option value="ZFS Bank" {% if request.POST.BankName == 'ZFS Bank' %}selected{% endif %}>ZFS Bank</option>
+            <option value="VFD Bank" {% if request.POST.BankName == 'VFD Bank' %}selected{% endif %}>VFD Bank</option>
+            <option value="ESF Bank" {% if request.POST.BankName == 'ESF Bank' %}selected{% endif %}>ESF Bank</option>
+        </select>
+
+
+        <div id="dateSelectionSection">
+            <p>Select Custom Date</p> 
+            <br>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="">From</label></td>
+                        <td><label for="">To</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" id="startdate" name="startdate" value="{{ request.POST.startdate }}"></td>
+                        <td><input type="date" id="enddate" name="enddate"  value="{{ request.POST.enddate }}"></td>
+                        <td><button type="submit">Search</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+
+    {% if request.method == 'POST' %}
+        {% if bank_transactions %}
+            <div class="Bank-container">
+                <h1>ZFS Bank</h1>
+                <p><strong>38/1581 Fotofast House, Mahatma Gandhi Rd, Padma Junction, Kochi, Kerala 682035</strong></p>
+                <h3>Opening Balance:  {{opening_bank_balance }}</h3>
+                <h3>Closing Balance: {{closing_bank_balance}}</h3>
+                <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #000;">
+                            <th class="SI" style="border: 1px solid #000;"><label>SI. No:</label></th>
+                            <th class="Date" style="border: 1px solid #000;"><label >Date</label></th>
+                            <th class="Particular" style="border: 1px solid #000;"><label>Particular</label></th>
+                            <th class="bal" style="border: 1px solid #000;"><label>Debit</label></th>
+                            <th class="bal" style="border: 1px solid #000;"><label>Credit</label></th>
+                            <th class="bal" style="border: 1px solid #000;"><label>Balance</label></th>
+                        </tr>
+                   </thead>
+                   <tbody>
+                    {% for bank in bank_transactions %}
+                        <tr>
+                            <td class="SI" style="border: 1px solid #000;"><label>{{ forloop.counter }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{bank.date}}</td></label>
+                            <td style="border: 1px solid #000;"><label>{{bank.particulars}}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{bank.debit|default:"" }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{bank.credit|default:"" }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{bank.balance}}</label></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>              
+        {% else %}
+            <p id="p">No Transaction found</p>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html> -->

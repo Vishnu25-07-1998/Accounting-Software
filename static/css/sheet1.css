@@ -1,0 +1,54 @@
+.container {
+    max-width: 835px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background-color: ivory;
+}
+#start_date{
+    width: 300px;
+}
+#end_date{
+    width: 300px;
+}
+/* .select{
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: ivory;
+
+} */
+.Bank-container {
+    max-width: 835px;
+    margin: 45px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background-color: ivory;
+}
+.SI {
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-block: 10px;
+}
+
+.Date {
+    padding-left: 64px;
+    padding-right: 65px;
+}
+
+.Particular {
+    padding-left: 75px;
+    padding-right: 80px;
+}
+
+.bal {
+    padding-right: 30px;
+    padding-left: 26px;
+}
+#p{
+    margin-block: 198px;
+    margin-inline: 285px
+}

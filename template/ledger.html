@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+
+
+        <div class="container">
+            <h1>Life Hospital General Ledger</h1>
+            <strong>5th Floor, Issac and Geethas Image Centre, Seaport - Airport Rd, Kochi, Kakkanad, Kerala 682037</strong>
+            <br>
+            <br>
+            <br>
+            <table style="text-align: center; border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #000;">
+                        <th class="SI" style="border: 1px solid #000;"><label>SI. No:</label></th>
+                        <th class="Date" style="border: 1px solid #000;"><label>Date</label></th>
+                        <th class="Particular" style="border: 1px solid #000;"><label>Account</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Debit($)</label></th>
+                        <th class="bal" style="border: 1px solid #000;"><label>Credit($)</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for general in Generalledger %}
+                        <tr>
+                            <td class="SI" style="border: 1px solid #000;"><label>{{ forloop.counter }}</label></td>
+                            <td style="border: 1px solid #000;">{{ general.Date }}</td>
+                            <td style="border: 1px solid #000;"><label>{{ general.Account }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{ general.Debit|default:"" }}</label></td>
+                            <td style="border: 1px solid #000;"><label>{{ general.Credit|default:"" }}</label></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sheet1.css' %}">
+<script src="{% static 'js_files/validation.js' %}"></script>
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Bootstrap-datepicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap-datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+{% endblock %}

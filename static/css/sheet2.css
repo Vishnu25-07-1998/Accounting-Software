@@ -1,0 +1,47 @@
+#dateSelectionSection {
+    display: none;
+
+}
+#startdate{
+    width: 300px;
+}
+#enddate{
+    width: 300px;
+}
+
+#Bank {
+    margin-inline-start: 580px;
+}
+#p{
+    margin-block: 198px;
+    margin-inline: 385px
+}
+/* Add any additional styling here */
+.Bank-container {
+    max-width: 835px;
+    margin: 45px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background-color: ivory;
+}
+.SI {
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-block: 10px;
+}
+
+.Date {
+    padding-left: 64px;
+    padding-right: 65px;
+}
+
+.Particular {
+    padding-left: 75px;
+    padding-right: 80px;
+}
+
+.bal {
+    padding-right: 30px;
+    padding-left: 26px;
+}

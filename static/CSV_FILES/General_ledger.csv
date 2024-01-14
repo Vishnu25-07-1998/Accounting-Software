@@ -1,0 +1,14 @@
+Date,Account,Debit,Credit
+2024-01-01,Cash,500000000.00,
+2024-01-01,Accounts Receivable,30000000.00,
+2024-01-01,Prepaid Expenses,20000.00,
+2024-01-01,Inventory,400000.00,
+2024-01-01,Property and Equipment,20000000.00,
+2024-01-01,Goodwill,5000000.00,
+2024-01-01,Accounts Payable,,600000.00
+2024-01-01,Accrued Expenses,,30000.00
+2024-01-01,Unearned Revenue,,550000.00
+2024-01-01,Long-term Debt,,2000000.00
+2024-01-01,Other Long-term Liabilities,,100000.00
+2024-01-01,Equity Capital,,551940000.00
+2024-01-01,Retained Earnings,,200000.00

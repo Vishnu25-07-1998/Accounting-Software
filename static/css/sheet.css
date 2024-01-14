@@ -1,0 +1,82 @@
+.container {
+    /* max-width: 800px; */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.box {
+    border: 1px solid #ddd;
+    background-color: beige;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.head {
+    text-align: center;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+.content {
+    display: flex;
+}
+
+.left-content,
+.right-content {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.divider {
+    width: 2px;
+    background-color: #ddd;
+    margin: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+.clspace{
+    padding-left: 217px;
+}
+.caspace{
+    padding-left: 138px;
+}
+.naspace{
+    padding-left: 104px;
+}
+.nlspace{
+    padding-left: 157px;
+}
+.espace{
+    padding-left: 215px;
+}
+.TCA span{
+    padding-left: 137px;
+}
+.TNA span{
+    padding-left: 105px;
+}
+.TA span {
+    padding-left: 192px;
+}
+.TCL span{
+    padding-left: 175px;
+}
+.TNL span{
+    padding-left: 150px;
+}
+.TL span {
+    padding-left: 118px;
+}
+.TE span {
+    padding-left: 255px;
+}
+.TLE span {
+    padding-left: 151px;
+}
+/* Add additional margin between account name and amount *
+/* Add more styling as needed */

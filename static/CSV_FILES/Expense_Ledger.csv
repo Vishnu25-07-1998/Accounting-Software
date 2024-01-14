@@ -1,0 +1,11 @@
+Date,ExpenseType,Vendor/Description,Amount($),Balance
+2023-11-01,Medical Supplies,ABC Medical Supplies,500000,500000
+2023-11-03,Staff Salaries,Hospital Staff,2000000,2500000
+2023-11-05,Utilities,Power Company,30000,2530000
+2023-11-11,Equipment Maintenance,XYZ Equipment Services,88500,2618500
+2023-11-15,Pharmaceutical Costs,Pharma Distributors,120000,2738500
+2023-11-20,Insurance Premiums,Health Insurance Company,150000,2888500
+2023-11-28,Janitorial Services,Clean Sweep Services,350000,3238500
+2023-11-29,IT Services,Tech Solutions,750000,3988500
+2023-11-30,Legal Services,Legal Associates,850000,4838500
+

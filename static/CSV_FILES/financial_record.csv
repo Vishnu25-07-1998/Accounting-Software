@@ -1,0 +1,9 @@
+DATE,PARTICULARS,DEBIT,CREDIT,BALANCE
+2023-11-01,Balance Forward,,,50000
+2023-11-07,Investment from xyz,25500,,75500
+2023-11-09,Investment from abc,15000,,90500
+2023-11-12,Investment from def,30000,,120500
+2023-11-17,Product purchase,,8000,112500
+2023-11-23,From HIJ Hospital,10000,,122500
+2023-11-29,Cheque_Deposit from MNO,5000,,127500
+2023-11-30,Salary,,22000,105500

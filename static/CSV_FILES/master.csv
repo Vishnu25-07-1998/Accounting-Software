@@ -1,0 +1,14 @@
+name,account_type,account_subtype,amount
+Cash,Asset,Current,500000000.00
+Accounts_Receivable,Asset,Current,30000000.00
+Prepaid_expenses,Asset,Current,20000.00
+Inventory,Asset,Current,400000.00
+Property_and_Equipment,Asset,NonCurrent,20000000.00
+Good_will,Asset,NonCurrent,5000000.00
+Accounts_Payable,Liability,Current,600000.00
+Accrued_Expenses,Liability,Current,30000.00
+Unearned_revenue,Liability,Current,550000.00
+Long-term_debt,Liability,NonCurrent,2000000.00
+Other_Long-term_liabilities,Liability,NonCurrent,100000.00
+Equity_Capital,Equity,,551940000.00
+Retained_Earnings,Equity,,200000.00

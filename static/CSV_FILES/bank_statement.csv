@@ -1,0 +1,12 @@
+DATE,PARTICULARS,DEBIT,CREDIT,BALANCE
+2023-11-01,Balance Forward,,,50000
+2023-11-03,Electricity Bill,10000,,40000
+2023-11-05,Bank Charges,500,,39500
+2023-11-07,Investment from xyz,,25500,65000
+2023-11-09,Investment from abc,,15000,80000
+2023-11-12,Investment from def,,30000,110000
+2023-11-15,Insurance Premium,2000,,108000
+2023-11-17,Product purchase,8000,,100000
+2023-11-20,Divident Interest,,5000,105000
+2023-11-23,From HIJ Hospital,,10000,115000
+2023-11-30,Salary,22000,,93000
